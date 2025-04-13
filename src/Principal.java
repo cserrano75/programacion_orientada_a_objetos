@@ -1,9 +1,14 @@
+import com.aluracursos.screenmatch.calculos.CalculadoraDeTiempo;
+import com.aluracursos.screenmatch.modelos.Pelicula;
+import com.aluracursos.screenmatch.modelos.Serie;
+
 public class Principal {
     public static void main(String[] args) {
         Pelicula miPelicula = new Pelicula();
-        miPelicula.nombre = "Encanto";
-        miPelicula.fechaDeLanzamiento = 2021;
-        miPelicula.duracionEnMinutos = 120;
+        miPelicula.setNombre("Encanto");
+        miPelicula.setFechaDeLanzamiento(2021);
+        miPelicula.setDuracionEnMinutos(120);
+        miPelicula.setIncluidoEnElPlan(true);
 
         miPelicula.muestraFichaTecnica();
 
@@ -14,12 +19,30 @@ public class Principal {
         System.out.println(miPelicula.getTotalDeLasEvaluaciones());
         System.out.println(miPelicula.calculaMedia());
 
-        Pelicula otraPelicula = new Pelicula();
-        otraPelicula.nombre = "Matrix";
-        otraPelicula.fechaDeLanzamiento = 1998;
-        otraPelicula.duracionEnMinutos = 180;
+        Serie casaDragon = new Serie();
+        casaDragon.setNombre("La Casa del Dragon");
+        casaDragon.setFechaDeLanzamiento(2022);
+        casaDragon.setTemporadas(1);
+        casaDragon.setMinutosPorEpisodio(50);
+        casaDragon.setEpisodiosPorTemporada(10);
 
-        //otraPelicula.muestraFichaTecnica();
+        Pelicula otrapelicula = new Pelicula();
+        otrapelicula.setNombre("Matrix");
+        otrapelicula.setFechaDeLanzamiento(1998);
+        otrapelicula.setDuracionEnMinutos(180);
+
+        casaDragon.muestraFichaTecnica();
+        System.out.println(casaDragon.getDuracionEnMinutos());
+
+        CalculadoraDeTiempo calculadora = new CalculadoraDeTiempo();
+        calculadora.incluye(miPelicula);
+        calculadora.incluye(casaDragon);
+        calculadora.incluye(otrapelicula);
+
+        System.out.println("Tiempo necesario para ver tus series: "
+                + calculadora.getTiempoTotal() + " minutos");
+
+
 
     }
 
